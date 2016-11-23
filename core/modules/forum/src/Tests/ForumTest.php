@@ -301,13 +301,13 @@ class ForumTest extends WebTestBase {
     $this->assertLink('Add forum');
     $this->assertLink('Add container');
     $this->clickLink('edit container');
-    $this->assertRaw('Edit container', 'Followed the link to edit the container');
+    $this->assertRaw('Edit ' . $this->forumContainer['name'], 'Followed the link to edit the container');
     // Create forum inside the forum container.
     $this->forum = $this->createForum('forum', $this->forumContainer['tid']);
     // Verify the "edit forum" link exists and functions correctly.
     $this->drupalGet('admin/structure/forum');
     $this->clickLink('edit forum');
-    $this->assertRaw('Edit forum', 'Followed the link to edit the forum');
+    $this->assertRaw($this->forum['name'], 'Followed the link to edit the forum');
     // Navigate back to forum structure page.
     $this->drupalGet('admin/structure/forum');
     // Create second forum in container, destined to be deleted below.

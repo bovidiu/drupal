@@ -15,6 +15,11 @@ class TermForm extends ContentEntityForm {
    */
   public function form(array $form, FormStateInterface $form_state) {
     $term = $this->entity;
+
+    if (!$term->isNew()) {
+      $form['#title'] = $this->t('Edit @name in @parent', array('@name' =>  $term->label(),'@parent' => $term->bundle()));
+    }
+
     $vocab_storage = $this->entityManager->getStorage('taxonomy_vocabulary');
     $taxonomy_storage = $this->entityManager->getStorage('taxonomy_term');
     $vocabulary = $vocab_storage->load($term->bundle());

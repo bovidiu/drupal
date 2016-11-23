@@ -49,7 +49,7 @@ class VocabularyForm extends BundleEntityFormBase {
       $form['#title'] = $this->t('Add vocabulary');
     }
     else {
-      $form['#title'] = $this->t('Edit vocabulary');
+      $form['#title'] = $this->t('Edit @name', array('@name' => $vocabulary->label()));
     }
 
     $form['name'] = array(
